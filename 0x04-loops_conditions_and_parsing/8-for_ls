@@ -3,9 +3,7 @@
 #+ The content of the current directory
 #+ In a list format
 #+ Where only the part of the name after the first dash is displayed
-FILE="/etc/passwd"
-
-while IFS=':' read -r username _ uid _ _ home _
+for file in *
 do
-    echo "$username:$uid:$home"
-done < "$FILE"
+    echo "$file" | cut -d "-" -f 2
+done

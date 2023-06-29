@@ -1,8 +1,8 @@
 #!/bin/bash
 # displays the content of the file /etc/passwd.
-while IFS=':' read -r username _ uid _ _ home _; do
-    echo "Username: $username"
-    echo "User ID: $uid"
-    echo "Home Directory: $home"
-    echo
-done < /etc/passwd
+FILE="/etc/passwd"
+
+while IFS=':' read -r username _ uid _ _ home _
+do
+    echo "$username:$uid:$home"
+done < "$FILE"
