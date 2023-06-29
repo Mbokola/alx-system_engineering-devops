@@ -1,8 +1,12 @@
-#!/bin/bash
-# displays the content of the file /etc/passwd.
-FILE="/etc/passwd"
-
-while IFS=':' read -r username _ uid _ _ home _
+#!/usr/bin/env bash
+# Script that prints some information about /rc/passwd.
+FILE=/etc/passwd
+while read -r p
 do
-    echo "$username:$uid:$home"
-done < "$FILE"
+	cut -d: -f1 <<<"$p" | tr -d $'\n'
+	echo -n :
+	cut -d: -f3 <<<"$p" | tr -d $'\n'
+	echo -n :
+	cut -d: -f6 <<<"$p" | tr -d $'\n'
+	echo
+done <$FILE
