@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# displays the content of the file /etc/passwd.
 while IFS=':' read -r username _ uid _ _ home _; do
     echo "Username: $username"
     echo "User ID: $uid"
