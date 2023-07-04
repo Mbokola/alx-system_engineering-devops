@@ -2,7 +2,7 @@
 # store user input
 usr_input = ARGV[0]
 # store regex pattern
-pattern = /hbt{1,4}n/
+pattern = /hbt+n/
 # use scan to find pattern in user input
 matching = usr_input.scan(pattern)
 #ouput joined match
