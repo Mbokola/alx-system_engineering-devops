@@ -6,4 +6,4 @@ pattern = /(?<=from:|to:|flags:)(.+?)(?=\])/
 # use scan to find pattern in user input
 matching = usr_input.scan(pattern)
 #ouput joined match
-puts matching.join
+puts matching.join(",")
