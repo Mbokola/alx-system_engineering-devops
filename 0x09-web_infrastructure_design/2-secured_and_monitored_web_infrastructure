@@ -1,0 +1,32 @@
+##### Additional features
+Additional 3 firewalls: Firewalls are established on each server to
+filter traffic to ensure only authorised connections are allowed.
+
+Additional SSL cerificate: Ensures use of HTTPS protocol which encrypts data
+during the connection.
+
+Additional 3 Monitoring clients: The monitoring client checks that the servers are
+functioning optimally and notify if something is wrong and needs attention.
+The Monitoring client works by collecting data and sending it to the monitoring system.
+
+##### Explain what to do if you want to monitor your web server QPS ?
+The monitoring client is configured to collect QPS data, sends a notification if QPS is
+below threshhold.
+
+##### Why terminating SSL at the load balancer level is an issue ?
+Its an issue because the traffic between the load balancer and the web servers is unencrypted
+
+##### Why having only one MySQL server capable of accepting writes is an issue ?
+This is because if the primary server goes down, data can no longer be written
+
+##### Why having servers with all the same components (database, web server and application server) might be a problem
+Having servers with all the same components (database, web server and application server)
+might be a problem because their consumption will not grow the same way between
+each of them (we might want to have more database servers than application servers for instance).
+
+Also there could be an issue when there is maintenance performed on a server for
+a specific component, it will affect other components that are on it
+
+##### Issues
+
+The load balncer remains the SPOF as it has no redundancy

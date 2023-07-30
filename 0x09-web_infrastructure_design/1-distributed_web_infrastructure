@@ -1,0 +1,25 @@
+##### Additional features
+Additional two servers: Extra servers offer redundancy in case of Failure.
+Additional load balancer: Distributes workload evenly between the two servers.
+In this implementation the Active-Active setup is implemented using weighted Round
+robin algorithim ensuring effecient use of available resources.
+
+##### How a database Primary-Replica (Master-Slave) cluster works
+The database Primary-Replica works by scynchronising data from the primary database
+hence having upto date data.
+The primary database node differs with the replica by allowing read/write
+while the Replica node can only allow reads.
+
+### Infrastructure issues of this implementation:
+
+SPOF: The single point of failure is the load-balancer. If it fails the setup fails.
+
+The setup also lacks security features such as HTTPS and firewalls which can be expose
+the web app to infiltration.
+Traffic via HTTP is unencrypted, thus i plain text, a hacker can intercept data, which
+can be harmful when dealing with sensitive data sach as credit numbers etc.
+Firewalls on the other hand filter traffic to ensure only authorised connections are
+allowed.
+
+The setup also lacks monitoring features, which play a role of observing and notifying
+on server performance.

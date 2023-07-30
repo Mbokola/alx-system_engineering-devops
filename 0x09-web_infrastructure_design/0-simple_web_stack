@@ -1,0 +1,47 @@
+##### What is a server?
+It is a physical or virtual computer usually located at a data center.
+it is installed with an operating system that provides resources and
+services to other computers, called clients.
+
+##### What is the role of the domain name
+The role of a domain name is to provide a user-friendly and human-readable way
+to access websites and online resources on the internet. The DNS translates the
+domain name to an IP address.
+
+##### What type of DNS record www is in www.foobar.com
+The "www" part is a subdomain. Subdomains are prefixes that are added to the
+main domain name, creating additional addressable locations or specific sections
+within a website.
+It is found in the A record of the name server
+
+##### What is the role of the web server ?
+The web server handles incoming requests from web clients (usually web browsers)
+and respond by delivering static web content, which can be in the form of web pages,
+images, videos, files, or any other data that the client has requested.
+
+##### What is the role of the application server ?
+It is responsible for hosting and executing the business logic, processing
+application data, and managing the communication between various components of the application.
+It responds by delivering dynamic web content.
+
+##### What is the role of the database ?
+The database's primary function is to provide an efficient, secure, and scalable
+way to store and retrieve data for various purposes.
+
+##### What is the server using to communicate with the computer of the user requesting the website
+the server communicates with the user's computer using the HTTP (Hypertext Transfer Protocol)
+or its secure version, HTTPS (HTTP Secure). HTTP/HTTPS belong at the the application layer of
+TCP/IP stack
+These protocols define how data is formatted and transmitted between the client
+(user's computer, typically a web browser) and the server.
+
+##### Explain what the issues are with this infrastructure:
+SPOF: This infrustructure does not offer any kind of redundancy, a failure in
+one component will result in the failure of all other components.
+
+The downtime will depend on how long maintenance  activities take. There will be
+temporary service interruption to users:
+
+The infrustructure also won't scale well if there's too much incoming traffic, since
+it does not provide support mechanisims when the load is high, therefore becoming
+susceptible to crashes and slow response times.
