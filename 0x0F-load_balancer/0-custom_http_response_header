@@ -1,4 +1,19 @@
 #!/usr/bin/env bash
+# Install nginx web server
+sudo apt-get update
+sudo apt-get -y install nginx
+
+# Configure Nginx to listen on port 80
+sudo sed -i 's/listen 80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
+
+# Configure your Nginx server so that /redirect_me is redirecting to another page.
+sudo sed -i '/server_name _;/a \\n        location /redirect_me {\n            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n        }\n' /etc/nginx/sites-available/default
+
+# Create a custom HTML page
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+
+# Create a custom 404 page not found
+sudo sed -i '/server_name _;/a \\n        error_page 404 /404.html;\n        location = /404.html {\n            internal;\n            return 404 "Ceci n'\''est pas une page.";\n        }' /etc/nginx/sites-available/default
 
 # Define the custom header name and value
 custom_header_name="X-Served-By"
@@ -12,10 +27,7 @@ if [ -f "$nginx_config_file" ]; then
     # Use sed to add the custom header to the Nginx configuration file
     sudo sed -i "/server_name _;/a \ \n    add_header $custom_header_name \"$custom_header_value\";" "$nginx_config_file"
 
-    # Test the Nginx configuration for syntax errors
-    sudo nginx -t
-
-    # Reload Nginx to apply the changes
-    sudo systemctl reload nginx
-
 fi
+
+# Restart Nginx
+sudo service nginx restart
