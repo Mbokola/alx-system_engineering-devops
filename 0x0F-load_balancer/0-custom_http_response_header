@@ -18,7 +18,4 @@ if [ -f "$nginx_config_file" ]; then
     # Reload Nginx to apply the changes
     sudo systemctl reload nginx
 
-    echo "Custom header '$custom_header_name' with value '$custom_header_value' added to Nginx configuration."
-else
-    echo "Nginx configuration file not found at '$nginx_config_file'. Please check the file path."
 fi
