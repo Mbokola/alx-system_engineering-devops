@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Install HAproxy if not installed
-sudo apt-get -y update
-sudo apt-get -y install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8
-sudo apt-get -y install haproxy=2.8.\*
+if ! command -v haproxy &>/dev/null; then
+    sudo apt-get -y update
+    sudo apt-get -y install --no-install-recommends software-properties-common
+    sudo add-apt-repository ppa:vbernat/haproxy-2.8
+    sudo apt-get -y install haproxy=2.8.\*
+fi
 
 # Define the backend server addresses and ports
 web_01_address="100.26.231.64"
@@ -21,8 +23,8 @@ frontend http-in
 
 backend servers
    balance roundrobin
-   server web-01 $web_01_address:$backend_port check
-   server web-02 $web_02_address:$backend_port check
+   server 247100-web-01 $web_01_address:$backend_port check
+   server 247100-web-02 $web_02_address:$backend_port check
 EOL
 
 #resart HAproxy
