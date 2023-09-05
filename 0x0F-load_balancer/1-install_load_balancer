@@ -15,7 +15,6 @@ backend_port="80"
 # Path to the haproxy.cfg file
 haproxy_cfg="/etc/haproxy/haproxy.cfg"
 
-
 # Append the desired configuration to the HAProxy configuration file using sudo tee
 sudo tee -a "$haproxy_cfg" <<EOL > /dev/null
 
@@ -29,6 +28,5 @@ backend servers
    server web-02 $web_02_address:$backend_port check
 EOL
 
-sudo systemctl enable haproxy
 #resart HAproxy
-sudo service haproxy restart
+sudo service haproxy start
