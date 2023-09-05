@@ -3,7 +3,7 @@
 sudo apt-get -y update
 sudo apt-get -y install haproxy=2.8.\*
 
-sudo cp "/etc/haproxy/haproxy.cfg.bak" "/etc/haproxy/haproxy.cfg"
+
 # Append the desired configuration to the HAProxy configuration file using sudo tee
 echo "\
 frontend http-in
