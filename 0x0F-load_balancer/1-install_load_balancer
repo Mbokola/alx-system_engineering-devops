@@ -15,16 +15,18 @@ backend_port="80"
 # Path to the haproxy.cfg file
 haproxy_cfg="/etc/haproxy/haproxy.cfg"
 
+sudo cp "/etc/haproxy/haproxy.cfg.bak" "/etc/haproxy/haproxy.cfg"
 # Append the desired configuration to the HAProxy configuration file using sudo tee
-sudo tee -a "$haproxy_cfg" <<EOL > /dev/null
+sudo tee "$haproxy_cfg" <<EOL > /dev/null
+
 frontend http-in
    bind *:80
    default_backend servers
 
 backend servers
    balance roundrobin
-   server 247100-web-01 $web_01_address:$backend_port check
-   server 247100-web-02 $web_02_address:$backend_port check
+   server web-01 $web_01_address:$backend_port check
+   server web-02 $web_02_address:$backend_port check
 EOL
 
 #resart HAproxy
