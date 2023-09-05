@@ -18,7 +18,6 @@ sudo tee -a "$haproxy_cfg" <<EOL > /dev/null
 
 frontend http-in
    bind *:80
-   mode http
    default_backend servers
 
 backend servers
