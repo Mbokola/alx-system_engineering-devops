@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # Install HAproxy if not installed
-if ! command -v haproxy &>/dev/null; then
-    sudo apt-get -y update
-    sudo apt-get -y install haproxy=2.8.\*
-fi
+sudo apt-get -y update
+sudo apt-get -y install haproxy=2.8.\*
 
 # Define the backend server addresses and ports
 web_01_address="100.26.231.64"
