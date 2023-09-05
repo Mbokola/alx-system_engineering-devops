@@ -2,7 +2,7 @@
 # Install HAproxy if not installed
 if ! command -v haproxy &>/dev/null; then
     sudo apt-get -y update
-    sudo apt-get -y install haproxy
+    sudo apt-get -y install haproxy=2.8.\*
 fi
 
 # Define the backend server addresses and ports
