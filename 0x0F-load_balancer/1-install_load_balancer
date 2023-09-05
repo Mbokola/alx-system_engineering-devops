@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
 # Install HAproxy if not installed
-sudo apt-get -y update
-sudo apt-get -y install haproxy=2.8.\*
+if ! command -v haproxy &>/dev/null; then
+    sudo apt-get -y update
+    sudo apt-get -y upgrade
+    sudo apt-get -y install haproxy
+fi
 
+# Define the backend server addresses and ports
+web_01_address="100.26.231.64"
+web_02_address="107.23.16.147"
+backend_port="80"
+
+# Path to the haproxy.cfg file
+haproxy_cfg="/etc/haproxy/haproxy.cfg"
 
 # Append the desired configuration to the HAProxy configuration file using sudo tee
-echo "\
+sudo tee -a "$haproxy_cfg" <<EOL > /dev/null
+
 frontend http-in
    bind *:80
    mode http
@@ -13,9 +24,9 @@ frontend http-in
 
 backend servers
    balance roundrobin
-   server web-01 100.26.231.64:80 check
-   server web-02 107.23.16.147:80 check" | sudo tee -a "/etc/haproxy/haproxy.cfg" > /dev/null
-
+   server web-01 $web_01_address:$backend_port check
+   server web-02 $web_02_address:$backend_port check
+EOL
 
 #resart HAproxy
 sudo service haproxy restart
