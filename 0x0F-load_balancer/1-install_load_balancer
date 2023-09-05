@@ -2,7 +2,6 @@
 # Install HAproxy if not installed
 if ! command -v haproxy &>/dev/null; then
     sudo apt-get -y update
-    sudo apt-get -y upgrade
     sudo apt-get -y install haproxy
 fi
 
