@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Have docker container listen on port 80
+
+apt update
+apt install -y nginx
+service nginx start
