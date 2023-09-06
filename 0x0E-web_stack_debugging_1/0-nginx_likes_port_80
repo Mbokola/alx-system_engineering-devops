@@ -3,4 +3,17 @@
 
 apt update
 apt install -y nginx
+
+cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+}
+EOF
+
 service nginx start
