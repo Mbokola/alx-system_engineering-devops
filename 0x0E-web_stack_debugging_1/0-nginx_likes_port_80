@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Have docker container listen on port 80
 
+apt update
 apt install -y nginx
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+sudo sed -i '/listen 80;/ s/$/ default_server;/' /etc/nginx/sites-available/default
+
 service nginx start
