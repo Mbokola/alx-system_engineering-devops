@@ -2,6 +2,27 @@
 # Have docker container listen on port 80
 
 apt install -y nginx
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+nginx_config="
+        server {
+            listen 80 default_server;
+            listen [::]:80 default_server;
+            server_name _;
+
+            location /hbnb_static/ {
+            alias /data/web_static/current/;
+            }
+
+        # Additional server configuration, if needed.
+        }
+"
+# Nginx configuration file path
+nginx_config_file="/etc/nginx/nginx.conf"
+
+# Insert the configuration block inside the http block on an empty line
+sudo sed -i '/http {/ {
+    :a
+    N
+    /\n[[:space:]]*$/!ba
+    r /dev/stdin
+}' "$nginx_config_file" <<< "$nginx_config"
 service nginx start
