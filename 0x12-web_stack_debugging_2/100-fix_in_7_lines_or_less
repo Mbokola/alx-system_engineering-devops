@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sed -i 's/user www-data/user nginx/' /etc/nginx/nginx.conf
+sed -i '/^http {/a\    server {\n        listen 8080;\n    }' /etc/nginx/nginx.conf
+sudo -u nginx service nginx restart
