@@ -30,5 +30,5 @@ if __name__ == "__main__":
             data.append([employee_ID, username, csv_data['completed'],
                          csv_data['title']])
     with open(csv_file, mode='w') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+        writer = csv.writer(file)
         writer.writerows(data)
