@@ -28,6 +28,6 @@ if __name__ == "__main__":
                    if title['userId'] == int(employee_ID)]
 
         print(f"Employee {username} is done with tasks\
-    ({len(titles)}/{len(titles1)}):")
+({len(titles)}/{len(titles1)}):")
         for title in titles:
-            print(title)
+            print(f"\t{title}")
