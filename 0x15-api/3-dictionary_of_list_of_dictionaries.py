@@ -2,7 +2,7 @@
 """
 2-export_to_JSON module
 Python script that, using this [REST API](https://jsonplaceholder.typicode.com)
-, for a given employee ID, returns
+, for all employees, returns
 information about his/her TODO list progress.
  export data in the JSON format.
 """
