@@ -12,23 +12,21 @@ import sys
 
 if __name__ == "__main__":
     employee_ID = sys.argv[1]
-    todo_url = "https://jsonplaceholder.typicode.com/todos"
-    users_url = "https://jsonplaceholder.typicode.com/users"
+    todo_url = f"https://jsonplaceholder.typicode.com/todos?userId=\
+{employee_ID}"
+    users_url = f"https://jsonplaceholder.typicode.com/users?id={employee_ID}"
     todo_response = requests.get(todo_url)
     users_response = requests.get(users_url)
     if todo_response.status_code == 200 and users_response.status_code == 200:
         todo_json_data = todo_response.json()
         users_json_data = users_response.json()
-        for user in users_json_data:
-            if user['id'] == int(employee_ID):
-                username = user['username']
+        username = users_json_data[0]['username']
 
     csv_file = f'{employee_ID}.csv'
     data = []
     for csv_data in todo_json_data:
-        if csv_data['userId'] == int(employee_ID):
-            data.append([employee_ID, username, csv_data['completed'],
-                         csv_data['title']])
+        data.append([employee_ID, username, csv_data['completed'],
+                     csv_data['title']])
     with open(csv_file, mode='w') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         writer.writerows(data)
