@@ -11,23 +11,22 @@ import sys
 
 if __name__ == "__main__":
     employee_ID = sys.argv[1]
-    todo_url = "https://jsonplaceholder.typicode.com/todos"
-    users_url = "https://jsonplaceholder.typicode.com/users"
+    true_todo_url = f"https://jsonplaceholder.typicode.com/todos?\
+userId={employee_ID}&completed=true"
+    todo_url = f"https://jsonplaceholder.typicode.com/todos?\
+userId={employee_ID}"
+    users_url = f"https://jsonplaceholder.typicode.com/users?id={employee_ID}"
     todo_response = requests.get(todo_url)
     users_response = requests.get(users_url)
-    if todo_response.status_code == 200 and users_response.status_code == 200:
+    true_todo_url_response = requests.get(true_todo_url)
+    if all(response.status_code == 200 for response in
+           (todo_response, users_response, true_todo_url_response)):
         todo_json_data = todo_response.json()
         users_json_data = users_response.json()
-        for user in users_json_data:
-            if user['id'] == int(employee_ID):
-                username = user['name']
-        titles = [title['title'] for title in todo_json_data
-                  if title['userId'] == int(employee_ID)
-                  and title['completed'] is True]
-        titles1 = [title['title'] for title in todo_json_data
-                   if title['userId'] == int(employee_ID)]
+        true_todo_url_data = true_todo_url_response.json()
+        username = users_json_data[0]['name']
 
         print(f"Employee {username} is done with tasks\
-({len(titles)}/{len(titles1)}):")
-        for title in titles:
-            print(f"\t {title}")
+({len(true_todo_url_data)}/{len(todo_json_data)}):")
+        for title in true_todo_url_data:
+            print(f"\t {title['title']}")
