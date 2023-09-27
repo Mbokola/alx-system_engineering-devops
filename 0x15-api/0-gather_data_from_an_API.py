@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-""" 0-gather_data_from_an_API module """
+"""
+0-gather_data_from_an_API module
+Python script that, using this [REST API](https://jsonplaceholder.typicode.com)
+, for a given employee ID, returns
+information about his/her TODO list progress.
+"""
 
 import requests
 import sys
