@@ -30,4 +30,4 @@ if __name__ == "__main__":
         print(f"Employee {username} is done with tasks\
 ({len(titles)}/{len(titles1)}):")
         for title in titles:
-            print(f"\t{title}")
+            print(f"     {title}")
