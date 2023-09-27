@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """
-0-gather_data_from_an_API module
+1-export_to_CSV module
 Python script that, using this [REST API](https://jsonplaceholder.typicode.com)
 , for a given employee ID, returns
 information about his/her TODO list progress.
+export data in the CSV format.
 """
 
 import csv
