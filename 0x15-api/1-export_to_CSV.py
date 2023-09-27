@@ -21,13 +21,14 @@ if __name__ == "__main__":
         users_json_data = users_response.json()
         for user in users_json_data:
             if user['id'] == int(employee_ID):
-                username = user['name']
+                username = user['username']
 
     csv_file = 'USER_ID.csv'
     data = []
     for csv_data in todo_json_data:
-        data.append([employee_ID, username, csv_data['completed'],
-                     csv_data['title']])
+        if csv_data['userId'] == int(employee_ID):
+            data.append([employee_ID, username, csv_data['completed'],
+                         csv_data['title']])
     with open(csv_file, mode='w') as file:
         writer = csv.writer(file)
         writer.writerows(data)
