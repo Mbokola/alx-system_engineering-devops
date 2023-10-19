@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# installs gunicorn
+sudo pip install gunicorn
